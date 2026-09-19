@@ -1,0 +1,618 @@
+<!DOCTYPE html>
+<html lang="es" style="margin:0;padding:0;">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RHJK // ULTRA ENTERPRISE SYSTEMS V1.0</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;500;600;700&family=Fira+Code:wght@400;500;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body>
+
+<!-- ===== CSS INYECTADO ===== -->
+<script>
+(function(){
+  var s = document.createElement('style');
+  s.textContent = `
+    :root {
+      --bg: #030000; --bg-2: #0a0002;
+      --card: rgba(12, 0, 3, 0.72); --card-solid: #0c0003;
+      --text: #f0e8e8; --muted: #7a5c62;
+      --accent: #ff0033; --accent-bright: #ff2a55; --accent-deep: #99001f;
+      --accent-soft: rgba(255, 0, 51, 0.12); --accent-glow: rgba(255, 0, 51, 0.45);
+      --accent2: #ff4d6d; --accent2-soft: rgba(255, 77, 109, 0.12);
+      --border: rgba(255, 0, 51, 0.22); --border-soft: rgba(255, 0, 51, 0.08);
+      --green: #00ff66; --yellow: #ffcc00;
+    }
+    * { box-sizing: border-box; }
+    html, body { margin:0; padding:0; background:var(--bg); color:var(--text); font-family:'Chakra Petch',sans-serif; overflow-x:hidden; scroll-behavior:smooth; }
+    body { background: radial-gradient(ellipse 80% 50% at 50% -10%, rgba(255,0,51,0.18), transparent 60%), radial-gradient(ellipse 60% 40% at 90% 80%, rgba(153,0,31,0.15), transparent 60%), var(--bg); min-height:100%; }
+    .crt-overlay { position:fixed; inset:0; pointer-events:none; z-index:9998; background: linear-gradient(rgba(18,0,4,0) 50%, rgba(0,0,0,0.22) 50%), linear-gradient(90deg, rgba(255,0,0,0.04), rgba(0,255,0,0.015), rgba(0,0,255,0.04)); background-size:100% 3px, 2px 100%; mix-blend-mode:multiply; opacity:0.55; }
+    .crt-vignette { position:fixed; inset:0; pointer-events:none; z-index:9997; background:radial-gradient(ellipse at center, transparent 55%, rgba(0,0,0,0.75) 100%); }
+    @keyframes crt-turn-on { 0%{transform:scale(1,0.008);filter:brightness(12);opacity:0;} 40%{transform:scale(1,0.008);filter:brightness(12);opacity:1;} 60%{transform:scale(1,1.012);filter:brightness(4);} 100%{transform:scale(1,1);filter:brightness(1);opacity:1;} }
+    .crt-on { animation:crt-turn-on 0.7s ease-out forwards; }
+    @keyframes crt-flicker { 0%,19%,21%,23%,25%,54%,56%,100%{opacity:1;} 20%,24%,55%{opacity:0.82;} }
+    .crt-flicker { animation:crt-flicker 5s infinite; }
+    .glitch { position:relative; display:inline-block; }
+    .glitch::before, .glitch::after { content:attr(data-text); position:absolute; top:0; left:0; width:100%; pointer-events:none; }
+    .glitch::before { color:#ff0033; text-shadow:2px 0 #ff0033; animation:glitch-anim 3.5s infinite linear alternate-reverse; clip-path:polygon(0 0,100% 0,100% 45%,0 45%); opacity:0.8; }
+    .glitch::after { color:#00fff5; text-shadow:-2px 0 #00fff5; animation:glitch-anim2 2.8s infinite linear alternate-reverse; clip-path:polygon(0 55%,100% 55%,100% 100%,0 100%); opacity:0.6; }
+    @keyframes glitch-anim { 0%{transform:translate(0);} 20%{transform:translate(-2px,1px);} 40%{transform:translate(2px,-1px);} 60%{transform:translate(-1px,2px);} 80%{transform:translate(1px,-2px);} 100%{transform:translate(0);} }
+    @keyframes glitch-anim2 { 0%{transform:translate(0);} 25%{transform:translate(2px,-1px);} 50%{transform:translate(-2px,1px);} 75%{transform:translate(1px,1px);} 100%{transform:translate(0);} }
+    @keyframes blink { 50%{opacity:0;} }
+    .cursor-blink { animation:blink 1s step-end infinite; }
+    @keyframes pulse-dot { 0%,100%{box-shadow:0 0 4px currentColor,0 0 8px currentColor;opacity:1;} 50%{box-shadow:0 0 2px currentColor;opacity:0.55;} }
+    .pulse-dot { animation:pulse-dot 1.4s ease-in-out infinite; }
+    .btn-neon { position:relative; display:inline-flex; align-items:center; gap:10px; padding:14px 28px; font-family:'Chakra Petch',sans-serif; font-weight:600; font-size:14px; letter-spacing:0.12em; text-transform:uppercase; color:var(--text); background:transparent; border:1px solid var(--accent); cursor:pointer; overflow:hidden; transition:all 0.25s ease; text-decoration:none; }
+    .btn-neon::before { content:''; position:absolute; top:0; left:-100%; width:100%; height:100%; background:linear-gradient(90deg,transparent,var(--accent-soft),transparent); transition:left 0.5s ease; }
+    .btn-neon:hover { background:var(--accent); color:var(--bg); box-shadow:0 0 10px var(--accent-glow),0 0 30px var(--accent-soft),inset 0 0 15px rgba(255,255,255,0.1); transform:translateY(-2px); }
+    .btn-neon:hover::before { left:100%; }
+    .btn-neon:active { transform:translateY(0); }
+    .btn-neon.primary { background:var(--accent); color:var(--bg); box-shadow:0 0 15px var(--accent-glow); }
+    .btn-neon.primary:hover { background:var(--accent-bright); box-shadow:0 0 20px var(--accent-glow),0 0 45px var(--accent-soft); }
+    .btn-neon.ghost { border-color:var(--border); color:var(--muted); }
+    .btn-neon.ghost:hover { border-color:var(--accent); color:var(--text); background:transparent; }
+    .glass-card { position:relative; background:var(--card); backdrop-filter:blur(14px); -webkit-backdrop-filter:blur(14px); border:1px solid var(--border); transition:all 0.35s cubic-bezier(0.2,0.8,0.2,1); overflow:hidden; }
+    .glass-card::before { content:''; position:absolute; top:0; left:0; right:0; height:1px; background:linear-gradient(90deg,transparent,var(--accent),transparent); opacity:0.5; }
+    .glass-card:hover { border-color:var(--accent); transform:translateY(-6px); box-shadow:0 20px 60px rgba(0,0,0,0.6),0 0 0 1px var(--accent),0 0 40px var(--accent-soft); }
+    .glass-card:hover::before { opacity:1; }
+    .tech-badge { display:inline-flex; align-items:center; padding:4px 10px; font-family:'Fira Code',monospace; font-size:11px; color:var(--accent2); background:var(--accent2-soft); border:1px solid rgba(255,77,109,0.25); border-radius:2px; letter-spacing:0.05em; transition:all 0.2s; }
+    .tech-badge:hover { background:var(--accent); color:var(--bg); border-color:var(--accent); }
+    .section-label { font-family:'Fira Code',monospace; font-size:11px; letter-spacing:0.3em; text-transform:uppercase; color:var(--muted); display:flex; align-items:center; gap:12px; }
+    .section-label::before { content:''; display:inline-block; width:40px; height:1px; background:var(--accent); }
+    .terminal-window { background:rgba(3,0,1,0.96); border:1px solid var(--accent-deep); box-shadow:0 0 0 1px rgba(255,0,51,0.08),0 25px 80px rgba(0,0,0,0.8),0 0 60px rgba(255,0,51,0.08),inset 0 0 40px rgba(0,0,0,0.9); font-family:'Fira Code',monospace; }
+    .terminal-header { background:linear-gradient(180deg,#140004,#0a0002); border-bottom:1px solid var(--accent-deep); padding:10px 16px; display:flex; align-items:center; justify-content:space-between; font-size:12px; letter-spacing:0.1em; }
+    .term-dots { display:flex; gap:7px; }
+    .term-dot { width:11px; height:11px; border-radius:50%; border:1px solid rgba(0,0,0,0.4); }
+    .term-body { padding:18px; font-size:13px; line-height:1.65; color:#d9c8cc; min-height:320px; max-height:480px; overflow-y:auto; }
+    .term-body::-webkit-scrollbar { width:5px; }
+    .term-body::-webkit-scrollbar-track { background:rgba(255,0,51,0.04); }
+    .term-body::-webkit-scrollbar-thumb { background:var(--accent-deep); border-radius:3px; }
+    .term-prompt-user { color:var(--accent); font-weight:700; }
+    .term-prompt-path { color:#a88890; }
+    .term-input { background:transparent; border:none; outline:none; color:#fff; font-family:'Fira Code',monospace; font-size:13px; flex:1; caret-color:var(--accent); }
+    .term-text-red { color:var(--accent); }
+    .term-text-green { color:var(--green); }
+    .term-text-yellow { color:var(--yellow); }
+    .term-text-dim { color:var(--muted); }
+    .term-text-white { color:#fff; }
+    .modal-backdrop { position:fixed; inset:0; background:rgba(0,0,0,0.75); backdrop-filter:blur(6px); -webkit-backdrop-filter:blur(6px); z-index:9000; opacity:0; pointer-events:none; transition:opacity 0.3s ease; }
+    .modal-backdrop.open { opacity:1; pointer-events:auto; }
+    .config-panel { position:fixed; top:0; right:0; bottom:0; width:min(420px,92vw); background:linear-gradient(180deg,#0a0002,#050001); border-left:1px solid var(--accent-deep); box-shadow:-20px 0 60px rgba(0,0,0,0.8); z-index:9001; transform:translateX(100%); transition:transform 0.4s cubic-bezier(0.2,0.8,0.2,1); overflow-y:auto; }
+    .config-panel.open { transform:translateX(0); }
+    .terminal-modal { position:fixed; top:50%; left:50%; transform:translate(-50%,-50%) scale(0.9); width:min(860px,94vw); z-index:9001; opacity:0; pointer-events:none; transition:all 0.35s cubic-bezier(0.2,0.8,0.2,1); }
+    .terminal-modal.open { opacity:1; pointer-events:auto; transform:translate(-50%,-50%) scale(1); }
+    .toggle { position:relative; width:44px; height:22px; background:rgba(255,0,51,0.08); border:1px solid var(--border); border-radius:11px; cursor:pointer; transition:all 0.25s; flex-shrink:0; }
+    .toggle::after { content:''; position:absolute; top:2px; left:2px; width:16px; height:16px; background:var(--muted); border-radius:50%; transition:all 0.25s; }
+    .toggle.on { background:var(--accent-soft); border-color:var(--accent); }
+    .toggle.on::after { left:24px; background:var(--accent); box-shadow:0 0 8px var(--accent-glow); }
+    .reveal { opacity:0; transform:translateY(30px); transition:opacity 0.8s ease,transform 0.8s ease; }
+    .reveal.visible { opacity:1; transform:translateY(0); }
+    .header-glass { background:rgba(5,0,1,0.7); backdrop-filter:blur(18px); -webkit-backdrop-filter:blur(18px); border-bottom:1px solid var(--border-soft); }
+    .ascii-logo { font-family:'Fira Code',monospace; font-weight:700; color:var(--accent); text-shadow:0 0 10px var(--accent-glow); letter-spacing:-0.02em; line-height:1; font-size:13px; white-space:pre; }
+    .grad-text { background:linear-gradient(135deg,#ff0033 0%,#ff4d6d 50%,#ff0033 100%); -webkit-background-clip:text; background-clip:text; color:transparent; filter:drop-shadow(0 0 20px rgba(255,0,51,0.3)); }
+    .input-line { display:flex; align-items:center; gap:8px; flex-wrap:wrap; }
+    .styled-select { background:rgba(255,0,51,0.04); border:1px solid var(--border); color:var(--text); font-family:'Fira Code',monospace; font-size:12px; padding:8px 12px; outline:none; cursor:pointer; border-radius:2px; transition:all 0.2s; }
+    .styled-select:hover, .styled-select:focus { border-color:var(--accent); background:var(--accent-soft); }
+    .styled-select option { background:#0a0002; color:var(--text); }
+    #matrix-canvas { position:fixed; inset:0; width:100%; height:100%; z-index:1; pointer-events:none; opacity:0; transition:opacity 0.8s; }
+    #matrix-canvas.active { opacity:0.18; }
+    #particle-canvas { position:fixed; inset:0; width:100%; height:100%; z-index:1; pointer-events:none; }
+    #boot-screen { position:fixed; inset:0; background:#000; z-index:10000; display:flex; align-items:center; justify-content:center; padding:40px; font-family:'Fira Code',monospace; font-size:13px; color:var(--accent); transition:opacity 0.6s ease; }
+    #boot-screen.hidden { opacity:0; pointer-events:none; }
+    .boot-inner { width:min(720px,100%); line-height:1.7; }
+    .noise::after { content:''; position:absolute; inset:0; pointer-events:none; opacity:0.03; background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"); }
+    .corner-frame { position:relative; }
+    .corner-frame::before, .corner-frame::after, .corner-frame > .c1, .corner-frame > .c2 { content:''; position:absolute; width:14px; height:14px; border-color:var(--accent); border-style:solid; border-width:0; opacity:0.7; transition:opacity 0.3s; pointer-events:none; }
+    .corner-frame::before { top:-1px; left:-1px; border-top-width:1px; border-left-width:1px; }
+    .corner-frame::after { top:-1px; right:-1px; border-top-width:1px; border-right-width:1px; }
+    .corner-frame > .c1 { bottom:-1px; left:-1px; border-bottom-width:1px; border-left-width:1px; }
+    .corner-frame > .c2 { bottom:-1px; right:-1px; border-bottom-width:1px; border-right-width:1px; }
+    .corner-frame:hover::before, .corner-frame:hover::after, .corner-frame:hover > .c1, .corner-frame:hover > .c2 { opacity:1; }
+    .scroll-progress { position:fixed; top:0; left:0; height:2px; background:linear-gradient(90deg,var(--accent-deep),var(--accent),var(--accent2)); z-index:9999; width:0%; transition:width 0.1s linear; box-shadow:0 0 8px var(--accent-glow); }
+    @media (max-width:768px) {
+      .btn-neon { padding:12px 20px; font-size:12px; }
+      .term-body { font-size:12px; padding:14px; min-height:260px; }
+    }
+  `;
+  document.head.appendChild(s);
+})();
+</script>
+
+<!-- ===== CONTENEDOR PRINCIPAL ===== -->
+<div style="position:relative;min-height:100%;">
+  <div class="scroll-progress" id="scroll-progress"></div>
+  <div class="crt-overlay crt-flicker"></div>
+  <div class="crt-vignette"></div>
+  <canvas id="particle-canvas"></canvas>
+  <canvas id="matrix-canvas"></canvas>
+
+  <!-- PANTALLA DE ARRANQUE -->
+  <div id="boot-screen">
+    <div class="boot-inner" id="boot-output"></div>
+  </div>
+
+  <!-- CONTENIDO PRINCIPAL -->
+  <div id="main-content" style="position:relative;z-index:2;opacity:0;transition:opacity 0.8s ease;">
+
+    <!-- HEADER -->
+    <header class="header-glass" style="position:sticky;top:0;z-index:100;">
+      <div style="max-width:1400px;margin:0 auto;padding:14px 28px;display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap;">
+        <div style="display:flex;align-items:center;gap:18px;flex-wrap:wrap;">
+          <pre class="ascii-logo"> _   _ _   _ _  __
+| | | | | | | |/ /
+| |_| | |_| | ' / 
+|  _  |  _  |  <  
+| | | | | | | \ \ 
+|_| |_|_| |_|_|\_\</pre>
+          <div style="display:flex;flex-direction:column;gap:2px;">
+            <div style="font-family:'Fira Code',monospace;font-size:11px;letter-spacing:0.25em;text-transform:uppercase;color:var(--muted);">RHJK_ULTRA_SYS</div>
+            <div style="display:flex;align-items:center;gap:8px;font-family:'Fira Code',monospace;font-size:11px;">
+              <span class="pulse-dot" style="display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--green);color:var(--green);"></span>
+              <span style="color:var(--green);">ONLINE</span>
+              <span style="color:var(--muted);">// v1.0.0-stable</span>
+            </div>
+          </div>
+        </div>
+        <nav style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;">
+          <a href="#hero" class="btn-neon ghost" style="padding:8px 16px;font-size:11px;">[01] Home</a>
+          <a href="#deployments" class="btn-neon ghost" style="padding:8px 16px;font-size:11px;">[02] Deployments</a>
+          <a href="#" onclick="openTerminal();return false;" class="btn-neon ghost" style="padding:8px 16px;font-size:11px;">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 17l6-6-6-6"/><path d="M12 19h8"/></svg>
+            Terminal
+          </a>
+          <button onclick="openConfig()" class="btn-neon" style="padding:8px 16px;font-size:11px;">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 1 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 1 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 1 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 1 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+            Config
+          </button>
+        </nav>
+      </div>
+    </header>
+
+    <!-- HERO -->
+    <section id="hero" style="position:relative;padding:120px 28px 100px;overflow:hidden;">
+      <div style="position:absolute;inset:0;background:radial-gradient(ellipse 70% 60% at 50% 0%,rgba(255,0,51,0.12),transparent 70%);pointer-events:none;"></div>
+      <div style="max-width:1200px;margin:0 auto;position:relative;">
+        <div class="reveal section-label" style="margin-bottom:28px;">// SYSTEM_INITIALIZATION_COMPLETE</div>
+        <h1 class="reveal" style="font-family:'Chakra Petch',sans-serif;font-weight:700;font-size:clamp(36px,6.5vw,88px);line-height:1.02;margin:0 0 24px;letter-spacing:-0.02em;">
+          <span class="glitch" data-text="RHJK">RHJK</span><br>
+          <span class="grad-text">PORTAFOLIO</span><br>
+          <span style="color:var(--text);">ULTRA ENTERPRISE</span>
+          <span style="color:var(--muted);font-size:0.5em;vertical-align:super;">V1.0</span>
+        </h1>
+        <div class="reveal" style="max-width:720px;margin-bottom:44px;">
+          <div style="font-family:'Fira Code',monospace;font-size:13px;color:var(--muted);margin-bottom:8px;">
+            <span style="color:var(--accent);">root@rhjk</span>:<span style="color:#a88890;">~</span>$ <span id="typewriter" style="color:var(--text);"></span><span class="cursor-blink" style="color:var(--accent);">▌</span>
+          </div>
+          <p style="font-size:16px;line-height:1.7;color:#b8a8ac;margin:0;">
+            <span style="color:var(--accent);">Senior Full-Stack Engineer</span> especializado en arquitecturas de alto rendimiento,
+            interfaces inmersivas y sistemas distribuidos. Construyo experiencias digitales en el límite
+            entre el arte y la ingeniería.
+          </p>
+        </div>
+        <div class="reveal" style="display:flex;gap:16px;flex-wrap:wrap;margin-bottom:70px;">
+          <a href="#deployments" class="btn-neon primary">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
+            Access Deployments
+          </a>
+          <button onclick="openTerminal()" class="btn-neon">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 17l6-6-6-6"/><path d="M12 19h8"/></svg>
+            Initiate Uplink
+          </button>
+          <button onclick="openConfig()" class="btn-neon ghost">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+            Kernel Config
+          </button>
+        </div>
+        <div class="reveal" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:1px;background:var(--border);border:1px solid var(--border);">
+          <div style="background:var(--card-solid);padding:24px;">
+            <div style="font-family:'Fira Code',monospace;font-size:11px;color:var(--muted);letter-spacing:0.15em;text-transform:uppercase;margin-bottom:8px;">Projects Deployed</div>
+            <div style="font-family:'Chakra Petch',sans-serif;font-size:36px;font-weight:700;color:var(--accent);line-height:1;">47<span style="color:var(--muted);font-size:18px;">+</span></div>
+          </div>
+          <div style="background:var(--card-solid);padding:24px;">
+            <div style="font-family:'Fira Code',monospace;font-size:11px;color:var(--muted);letter-spacing:0.15em;text-transform:uppercase;margin-bottom:8px;">Uptime</div>
+            <div style="font-family:'Chakra Petch',sans-serif;font-size:36px;font-weight:700;color:var(--green);line-height:1;">99.9<span style="color:var(--muted);font-size:18px;">%</span></div>
+          </div>
+          <div style="background:var(--card-solid);padding:24px;">
+            <div style="font-family:'Fira Code',monospace;font-size:11px;color:var(--muted);letter-spacing:0.15em;text-transform:uppercase;margin-bottom:8px;">Tech Stack</div>
+            <div style="font-family:'Chakra Petch',sans-serif;font-size:36px;font-weight:700;color:var(--accent2);line-height:1;">12<span style="color:var(--muted);font-size:18px;"> cores</span></div>
+          </div>
+          <div style="background:var(--card-solid);padding:24px;">
+            <div style="font-family:'Fira Code',monospace;font-size:11px;color:var(--muted);letter-spacing:0.15em;text-transform:uppercase;margin-bottom:8px;">Years Coding</div>
+            <div style="font-family:'Chakra Petch',sans-serif;font-size:36px;font-weight:700;color:var(--text);line-height:1;">08<span style="color:var(--muted);font-size:18px;"> yrs</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- DEPLOYMENTS -->
+    <section id="deployments" style="position:relative;padding:80px 28px 120px;">
+      <div style="max-width:1400px;margin:0 auto;">
+        <div class="reveal" style="display:flex;align-items:flex-end;justify-content:space-between;gap:24px;flex-wrap:wrap;margin-bottom:56px;">
+          <div>
+            <div class="section-label" style="margin-bottom:18px;">// ACTIVE_DEPLOYMENTS</div>
+            <h2 class="reveal" style="font-family:'Chakra Petch',sans-serif;font-weight:700;font-size:clamp(28px,4vw,48px);line-height:1.1;margin:0;">
+              <span style="color:var(--text);">Proyectos</span> <span class="grad-text">en Producción</span>
+            </h2>
+          </div>
+          <div style="font-family:'Fira Code',monospace;font-size:12px;color:var(--muted);">
+            <span style="color:var(--green);">●</span> 6 sistemas activos
+          </div>
+        </div>
+        <div id="projects-grid" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:24px;"></div>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer style="position:relative;border-top:1px solid var(--border-soft);padding:40px 28px;">
+      <div style="max-width:1400px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap;">
+        <div style="font-family:'Fira Code',monospace;font-size:11px;color:var(--muted);">
+          <span style="color:var(--accent);">RHJK_ULTRA_SYS</span> &copy; 2026 // Built with <span style="color:var(--accent);">Vanilla JS</span> + <span style="color:var(--accent);">Cyberpunk Engine</span>
+        </div>
+        <div style="font-family:'Fira Code',monospace;font-size:11px;color:var(--muted);display:flex;gap:20px;flex-wrap:wrap;">
+          <span>NODE: <span style="color:var(--green);">secure-01</span></span>
+          <span>LAT: <span style="color:var(--text);">12ms</span></span>
+          <span>ENC: <span style="color:var(--accent);">AES-256</span></span>
+        </div>
+      </div>
+    </footer>
+
+  </div><!-- /main-content -->
+
+  <!-- MODAL BACKDROP -->
+  <div class="modal-backdrop" id="modal-backdrop" onclick="closeAllModals()"></div>
+
+  <!-- PANEL CONFIG -->
+  <aside class="config-panel" id="config-panel">
+    <div style="padding:28px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;">
+      <div>
+        <div style="font-family:'Fira Code',monospace;font-size:10px;letter-spacing:0.25em;text-transform:uppercase;color:var(--muted);margin-bottom:4px;">ULTRA_KERNEL</div>
+        <div style="font-family:'Chakra Petch',sans-serif;font-size:20px;font-weight:700;color:var(--accent);">CONFIG PANEL</div>
+      </div>
+      <button onclick="closeConfig()" style="background:transparent;border:1px solid var(--border);color:var(--muted);width:34px;height:34px;cursor:pointer;display:flex;align-items:center;justify-content:center;">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6L6 18"/><path d="M6 6l12 12"/></svg>
+      </button>
+    </div>
+    <div style="padding:24px;">
+      <div style="font-family:'Fira Code',monospace;font-size:10px;letter-spacing:0.25em;text-transform:uppercase;color:var(--muted);margin-bottom:20px;">// Visual_Settings</div>
+      <div style="display:flex;flex-direction:column;gap:18px;margin-bottom:36px;">
+        <div style="display:flex;align-items:center;justify-content:space-between;gap:16px;">
+          <div><div style="font-size:14px;font-weight:600;color:var(--text);">Red de Partículas Cyber</div><div style="font-family:'Fira Code',monospace;font-size:11px;color:var(--muted);margin-top:2px;">network_nodes.enabled</div></div>
+          <div class="toggle on" id="toggle-particles" onclick="toggleParticles()"></div>
+        </div>
+        <div style="display:flex;align-items:center;justify-content:space-between;gap:16px;">
+          <div><div style="font-size:14px;font-weight:600;color:var(--text);">Efectos CRT / Scanlines</div><div style="font-family:'Fira Code',monospace;font-size:11px;color:var(--muted);margin-top:2px;">display.crt_overlay</div></div>
+          <div class="toggle on" id="toggle-crt" onclick="toggleCRT()"></div>
+        </div>
+        <div style="display:flex;align-items:center;justify-content:space-between;gap:16px;">
+          <div><div style="font-size:14px;font-weight:600;color:var(--text);">Efectos de Audio</div><div style="font-family:'Fira Code',monospace;font-size:11px;color:var(--muted);margin-top:2px;">audio.synth_enabled</div></div>
+          <div class="toggle" id="toggle-audio" onclick="toggleAudio()"></div>
+        </div>
+        <div style="display:flex;align-items:center;justify-content:space-between;gap:16px;">
+          <div><div style="font-size:14px;font-weight:600;color:var(--text);">Glitch Text Effects</div><div style="font-family:'Fira Code',monospace;font-size:11px;color:var(--muted);margin-top:2px;">fx.glitch_overlay</div></div>
+          <div class="toggle on" id="toggle-glitch" onclick="toggleGlitch()"></div>
+        </div>
+      </div>
+      <div style="font-family:'Fira Code',monospace;font-size:10px;letter-spacing:0.25em;text-transform:uppercase;color:var(--muted);margin-bottom:20px;">// System_Mode</div>
+      <div style="display:flex;flex-direction:column;gap:12px;margin-bottom:36px;">
+        <label style="font-size:13px;color:var(--muted);">Seleccionar perfil de sistema</label>
+        <select class="styled-select" id="system-mode" onchange="changeSystemMode(this.value)">
+          <option value="stealth">STEALTH_MODE // Bajo consumo</option>
+          <option value="balanced" selected>BALANCED // Recomendado</option>
+          <option value="ultra">ULTRA_PERFORMANCE // Máximo</option>
+          <option value="matrix">MATRIX_RAIN // Lluvia de código</option>
+        </select>
+      </div>
+      <div style="font-family:'Fira Code',monospace;font-size:10px;letter-spacing:0.25em;text-transform:uppercase;color:var(--muted);margin-bottom:20px;">// System_Info</div>
+      <div style="background:rgba(255,0,51,0.03);border:1px solid var(--border);padding:16px;font-family:'Fira Code',monospace;font-size:12px;line-height:1.8;">
+        <div><span style="color:var(--accent);">OS:</span> RHJK OS v2.4-zen</div>
+        <div><span style="color:var(--accent);">KERNEL:</span> 6.8.9-rhjk-ultra</div>
+        <div><span style="color:var(--accent);">SHELL:</span> bash 5.2.26</div>
+        <div><span style="color:var(--accent);">CPU:</span> Threadripper 5995WX</div>
+        <div><span style="color:var(--accent);">THEME:</span> Crimson-Deep v1</div>
+      </div>
+      <button onclick="closeConfig()" class="btn-neon primary" style="width:100%;margin-top:28px;justify-content:center;">Aplicar y Cerrar</button>
+    </div>
+  </aside>
+
+  <!-- TERMINAL MODAL -->
+  <div class="terminal-modal" id="terminal-modal">
+    <div class="terminal-window corner-frame noise" style="position:relative;">
+      <span class="c1"></span><span class="c2"></span>
+      <div class="terminal-header">
+        <div style="display:flex;align-items:center;gap:12px;">
+          <div class="term-dots">
+            <div class="term-dot" style="background:#ff5f57;"></div>
+            <div class="term-dot" style="background:#febc2e;"></div>
+            <div class="term-dot" style="background:#28c840;"></div>
+          </div>
+          <span style="color:var(--accent);">RHJK_CLI</span>
+          <span style="color:var(--muted);">// root@rhjk-ultra:~</span>
+        </div>
+        <button onclick="closeTerminal()" style="background:transparent;border:none;color:var(--muted);cursor:pointer;font-family:'Fira Code',monospace;font-size:14px;padding:0 6px;">✕</button>
+      </div>
+      <div class="term-body" id="term-output"></div>
+    </div>
+  </div>
+
+</div><!-- /wrapper -->
+
+<!-- ===== JAVASCRIPT PRINCIPAL ===== -->
+<script>
+(function(){
+  var STATE = {
+    particles: true, crt: true, audio: false, glitch: true,
+    systemMode: 'balanced', matrixActive: false, audioCtx: null
+  };
+
+  var PROJECTS = [
+    { id:'headdles', name:'HEADDLES', codename:'HDL-SYS-01',
+      description:'Plataforma SaaS de gestión empresarial con arquitectura de microservicios y panel de control en tiempo real.',
+      tags:['HTML5','JavaScript','Node.js','PostgreSQL','Redis'], status:'production', accent:'#ff0033' },
+    { id:'qyrex', name:'QYREX CEO', codename:'QRX-CORE-02',
+      description:'Sistema de inteligencia ejecutiva para toma de decisiones con dashboards predictivos y análisis de datos.',
+      tags:['Python','FastAPI','React','TensorFlow','AWS'], status:'production', accent:'#ff4d6d' },
+    { id:'nexus', name:'NEXUS GRID', codename:'NXS-NET-03',
+      description:'Red distribuida de nodos de comunicación con cifrado de extremo a extremo y latencia sub-20ms.',
+      tags:['Go','gRPC','Kubernetes','Docker','TLS'], status:'production', accent:'#cc0029' },
+    { id:'void', name:'VOID ENGINE', codename:'VOD-ENG-04',
+      description:'Motor de renderizado web 3D optimizado para experiencias inmersivas y visualizaciones de datos complejas.',
+      tags:['WebGL','Three.js','TypeScript','GLSL'], status:'beta', accent:'#ff6680' },
+    { id:'cipher', name:'CIPHER VAULT', codename:'CPR-VLT-05',
+      description:'Gestor de credenciales empresariales con criptografía homomórfica y autenticación multi-factor.',
+      tags:['Rust','WebAssembly','AES-256','Argon2'], status:'production', accent:'#e6002e' },
+    { id:'roblox', name:'RBX_FRAMEWORK', codename:'RBX-LUA-06',
+      description:'Framework de desarrollo para Roblox con sistema de eventos, networking replicado y utilidades avanzadas.',
+      tags:['Luau','Roblox','OOP','Replication'], status:'production', accent:'#ff3355' }
+  ];
+
+  // AUDIO
+  function ensureAudio(){ if(!STATE.audio) return; if(!STATE.audioCtx){ try{ STATE.audioCtx = new (window.AudioContext||window.webkitAudioContext)(); }catch(e){ STATE.audio=false; } } }
+  function beep(freq,dur,type){ if(!STATE.audio) return; ensureAudio(); if(!STATE.audioCtx) return; try{ var o=STATE.audioCtx.createOscillator(),g=STATE.audioCtx.createGain(); o.type=type||'square'; o.frequency.value=freq; g.gain.setValueAtTime(0.04,STATE.audioCtx.currentTime); g.gain.exponentialRampToValueAtTime(0.001,STATE.audioCtx.currentTime+dur); o.connect(g); g.connect(STATE.audioCtx.destination); o.start(); o.stop(STATE.audioCtx.currentTime+dur); }catch(e){} }
+  function clickSound(){ beep(880,0.04,'square'); }
+  function hoverSound(){ beep(1200,0.02,'sine'); }
+
+  // RENDER PROYECTOS
+  function renderProjects(){
+    var grid=document.getElementById('projects-grid'); if(!grid) return;
+    grid.innerHTML=PROJECTS.map(function(p,i){
+      var sc=p.status==='production'?'var(--green)':'var(--yellow)';
+      var sl=p.status==='production'?'PRODUCTION':'BETA';
+      return '<div class="glass-card corner-frame reveal noise" style="position:relative;padding:28px;display:flex;flex-direction:column;gap:18px;animation-delay:'+(i*0.06)+'s;"><span class="c1"></span><span class="c2"></span>'+
+        '<div style="display:flex;align-items:flex-start;justify-content:space-between;gap:12px;"><div>'+
+        '<div style="font-family:\'Fira Code\',monospace;font-size:10px;letter-spacing:0.2em;color:var(--muted);margin-bottom:6px;">'+p.codename+'</div>'+
+        '<h3 style="font-family:\'Chakra Petch\',sans-serif;font-size:24px;font-weight:700;margin:0;color:var(--text);letter-spacing:-0.01em;">'+p.name+'</h3></div>'+
+        '<span style="display:inline-flex;align-items:center;gap:6px;font-family:\'Fira Code\',monospace;font-size:10px;letter-spacing:0.1em;padding:4px 10px;border:1px solid '+sc+'33;background:'+sc+'14;color:'+sc+';border-radius:2px;white-space:nowrap;">'+
+        '<span style="width:5px;height:5px;border-radius:50%;background:'+sc+';box-shadow:0 0 6px '+sc+';"></span>'+sl+'</span></div>'+
+        '<p style="font-size:14px;line-height:1.65;color:#a8989c;margin:0;flex:1;">'+p.description+'</p>'+
+        '<div style="display:flex;flex-wrap:wrap;gap:6px;">'+p.tags.map(function(t){return '<span class="tech-badge">'+t+'</span>'}).join('')+'</div>'+
+        '<div style="display:flex;gap:10px;padding-top:6px;border-top:1px solid var(--border-soft);">'+
+        '<button class="btn-neon primary" style="padding:10px 18px;font-size:12px;flex:1;justify-content:center;" onclick="clickSound();"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="5 3 19 12 5 21 5 3"/></svg>Launch</button>'+
+        '<button class="btn-neon ghost" style="padding:10px 14px;font-size:12px;" onclick="clickSound();"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg></button>'+
+        '</div></div>';
+    }).join('');
+  }
+
+  // PARTICULAS
+  var particleCanvas,pCtx,particles=[],mouse={x:-9999,y:-9999};
+  var PARTICLE_COUNT=80;
+  function initParticles(){
+    particleCanvas=document.getElementById('particle-canvas'); if(!particleCanvas) return;
+    pCtx=particleCanvas.getContext('2d'); resizeParticleCanvas(); createParticles();
+    window.addEventListener('resize',resizeParticleCanvas);
+    document.addEventListener('mousemove',function(e){mouse.x=e.clientX;mouse.y=e.clientY;});
+    animateParticles();
+  }
+  function resizeParticleCanvas(){ if(!particleCanvas) return; particleCanvas.width=window.innerWidth; particleCanvas.height=Math.max(document.documentElement.scrollHeight,window.innerHeight); }
+  function createParticles(){
+    particles=[]; var w=particleCanvas?particleCanvas.width:window.innerWidth; var h=particleCanvas?particleCanvas.height:window.innerHeight;
+    for(var i=0;i<PARTICLE_COUNT;i++) particles.push({x:Math.random()*w,y:Math.random()*h,vx:(Math.random()-0.5)*0.35,vy:(Math.random()-0.5)*0.35,r:Math.random()*1.8+0.6});
+  }
+  function animateParticles(){
+    if(!pCtx||!particleCanvas) return;
+    pCtx.clearRect(0,0,particleCanvas.width,particleCanvas.height);
+    if(STATE.particles){
+      var w=particleCanvas.width,h=particleCanvas.height;
+      for(var i=0;i<particles.length;i++){
+        var p=particles[i]; p.x+=p.vx; p.y+=p.vy;
+        var dx=p.x-mouse.x,dy=p.y-mouse.y,dist=Math.sqrt(dx*dx+dy*dy);
+        if(dist<120){var f=(120-dist)/120;p.x+=(dx/dist)*f*0.8;p.y+=(dy/dist)*f*0.8;}
+        if(p.x<0)p.x=w; if(p.x>w)p.x=0; if(p.y<0)p.y=h; if(p.y>h)p.y=0;
+        pCtx.beginPath(); pCtx.arc(p.x,p.y,p.r,0,Math.PI*2); pCtx.fillStyle='rgba(255,0,51,0.55)'; pCtx.fill();
+      }
+      for(var i=0;i<particles.length;i++){
+        for(var j=i+1;j<particles.length;j++){
+          var p1=particles[i],p2=particles[j]; var ddx=p1.x-p2.x,ddy=p1.y-p2.y,dd=Math.sqrt(ddx*ddx+ddy*ddy);
+          if(dd<140){ var a=(1-dd/140)*0.35; pCtx.beginPath(); pCtx.moveTo(p1.x,p1.y); pCtx.lineTo(p2.x,p2.y); pCtx.strokeStyle='rgba(153,0,31,'+a+')'; pCtx.lineWidth=0.7; pCtx.stroke(); }
+        }
+      }
+    }
+    requestAnimationFrame(animateParticles);
+  }
+
+  // MATRIX
+  var matrixCanvas,mCtx,matrixDrops=[],matrixChars='RHJK01アイウエオカキクケコサシスセソタチツテトナニヌネノハヒフヘホマミムメモヤユヨラリルレロワヲン';
+  var matrixRunning=false,matrixInterval=null;
+  function initMatrix(){ matrixCanvas=document.getElementById('matrix-canvas'); if(!matrixCanvas) return; mCtx=matrixCanvas.getContext('2d'); resizeMatrix(); window.addEventListener('resize',resizeMatrix); }
+  function resizeMatrix(){ if(!matrixCanvas) return; matrixCanvas.width=window.innerWidth; matrixCanvas.height=Math.max(document.documentElement.scrollHeight,window.innerHeight); var fs=14,cols=Math.floor(matrixCanvas.width/fs); matrixDrops=[]; for(var i=0;i<cols;i++) matrixDrops[i]=Math.random()*-100; matrixCanvas._fontSize=fs; }
+  function startMatrix(){ if(matrixRunning) return; if(!matrixCanvas) initMatrix(); matrixCanvas.classList.add('active'); matrixRunning=true; STATE.matrixActive=true; matrixInterval=setInterval(function(){ if(!mCtx||!matrixCanvas) return; mCtx.fillStyle='rgba(3,0,0,0.08)'; mCtx.fillRect(0,0,matrixCanvas.width,matrixCanvas.height); mCtx.fillStyle='#ff0033'; mCtx.font=matrixCanvas._fontSize+'px "Fira Code", monospace'; for(var i=0;i<matrixDrops.length;i++){ var t=matrixChars[Math.floor(Math.random()*matrixChars.length)]; mCtx.fillText(t,i*matrixCanvas._fontSize,matrixDrops[i]*matrixCanvas._fontSize); if(matrixDrops[i]*matrixCanvas._fontSize>matrixCanvas.height&&Math.random()>0.975) matrixDrops[i]=0; matrixDrops[i]++; } },45); }
+  function stopMatrix(){ if(!matrixRunning) return; clearInterval(matrixInterval); matrixCanvas.classList.remove('active'); if(mCtx&&matrixCanvas) mCtx.clearRect(0,0,matrixCanvas.width,matrixCanvas.height); matrixRunning=false; STATE.matrixActive=false; }
+
+  // TYPEWRITER
+  function typeWriter(el,text,speed,cb){ var i=0; function step(){ if(i<text.length){ el.textContent+=text.charAt(i); i++; setTimeout(step,speed+Math.random()*20); } else if(cb) cb(); } step(); }
+
+  // BOOT
+  function startBoot(){
+    var out=document.getElementById('boot-output'),main=document.getElementById('main-content'); if(!out) return;
+    var lines=[
+      {t:'[    0.000000] RHJK OS v2.4-zen1-1-ultra booting...',c:'term-text-dim',d:120},
+      {t:'[    0.124381] CPU: AMD Ryzen Threadripper PRO 5995WX (128) @ 4.5GHz',c:'term-text-dim',d:80},
+      {t:'[    0.241992] Memory: 256GiB / 256GiB DDR5 ECC',c:'term-text-dim',d:80},
+      {t:'[    0.412883] NET: Initializing encrypted network stack...',c:'term-text-yellow',d:140},
+      {t:'[    0.588172] NET: Tor chain established [3 hops]',c:'term-text-green',d:100},
+      {t:'[    0.721004] KERNEL: Loading RHJK_ULTRA_SYS module v1.0.0',c:'term-text-dim',d:120},
+      {t:'[    0.899221] SEC: AES-256-GCM cipher initialized',c:'term-text-green',d:80},
+      {t:'[    1.044128] SEC: Biometric auth layer online',c:'term-text-green',d:80},
+      {t:'[    1.211883] UI: Compiling Crimson-Deep theme engine...',c:'term-text-yellow',d:160},
+      {t:'[    1.422009] UI: Particle network renderer ready',c:'term-text-green',d:80},
+      {t:'[    1.588172] UI: CRT scanline shader loaded',c:'term-text-green',d:80},
+      {t:'',c:'',d:100},
+      {t:'╔══════════════════════════════════════════════════════════╗',c:'term-text-red',d:30},
+      {t:'║      ██▀███   ██░ ██  ▄▄▄██▀▀▀ ██ ▄█▀  ULTRA  V1.0      ║',c:'term-text-red',d:30},
+      {t:'║     ▓██ ▒ ██▒▓██░ ██▒   ▒██    ██▄█▒                     ║',c:'term-text-red',d:30},
+      {t:'║     ▓██ ░▄█ ▒▒██▀▀██░   ░██   ▓███▄░    ENTERPRISE      ║',c:'term-text-red',d:30},
+      {t:'║     ▒██▀▀█▄  ░▓█ ░██  ▓██▄██▓ ▓██ █▄    SYSTEMS         ║',c:'term-text-red',d:30},
+      {t:'║     ░██▓ ▒██▒░▓█▒░██▓  ▓███▒  ▒██▒ █▄                   ║',c:'term-text-red',d:30},
+      {t:'╚══════════════════════════════════════════════════════════╝',c:'term-text-red',d:30},
+      {t:'',c:'',d:100},
+      {t:'[  OK  ] All subsystems nominal. Establishing uplink...',c:'term-text-green',d:200}
+    ];
+    var idx=0;
+    function nl(){
+      if(idx>=lines.length){
+        setTimeout(function(){ document.getElementById('boot-screen').classList.add('hidden'); if(main){main.classList.add('crt-on');main.style.opacity='1';} setTimeout(postBoot,400); },500); return;
+      }
+      var ln=lines[idx],div=document.createElement('div'); if(ln.c) div.className=ln.c; div.textContent=ln.t; out.appendChild(div); idx++; setTimeout(nl,ln.d);
+    }
+    nl();
+  }
+  function postBoot(){
+    renderProjects(); initParticles(); initMatrix(); initTerminal(); initReveal(); initScrollProgress();
+    var tw=document.getElementById('typewriter');
+    if(tw) typeWriter(tw,'cat ./manifesto.sys',45,function(){ setTimeout(function(){tw.textContent='';typeWriter(tw,'Senior Full-Stack Engineer // UI/UX Architect',35);},1200); });
+  }
+
+  // REVEAL
+  function initReveal(){
+    var els=document.querySelectorAll('.reveal');
+    if(!('IntersectionObserver'in window)){els.forEach(function(e){e.classList.add('visible');});return;}
+    var io=new IntersectionObserver(function(entries){ entries.forEach(function(e){if(e.isIntersecting){e.target.classList.add('visible');io.unobserve(e.target);}}); },{threshold:0.1,rootMargin:'0px 0px -40px 0px'});
+    els.forEach(function(el){io.observe(el);});
+  }
+
+  // SCROLL PROGRESS
+  function initScrollProgress(){
+    var bar=document.getElementById('scroll-progress');
+    window.addEventListener('scroll',function(){
+      var h=document.documentElement; var s=h.scrollTop/(h.scrollHeight-h.clientHeight);
+      if(bar) bar.style.width=(s*100)+'%';
+      if(particleCanvas){ var nh=Math.max(h.scrollHeight,window.innerHeight); if(Math.abs(particleCanvas.height-nh)>200) particleCanvas.height=nh; }
+    });
+  }
+
+  // TERMINAL
+  var termOutput,cmdHistory=[],histIdx=-1,isProcessing=false;
+  function initTerminal(){ termOutput=document.getElementById('term-output'); if(!termOutput) return; termWelcome(); }
+  function termPrint(text,cls){ if(!termOutput) return; var d=document.createElement('div'); if(cls) d.className=cls; d.innerHTML=text; termOutput.insertBefore(d,document.getElementById('term-input-line')); termOutput.scrollTop=termOutput.scrollHeight; }
+  function termWelcome(){ if(!termOutput) return; termOutput.innerHTML=''; termPrint('<span class="term-text-red">RHJK_CLI</span> <span class="term-text-dim">// Ultra Terminal Interface v1.0.0</span>'); termPrint('<span class="term-text-dim">Copyright (c) 2026 RHJK Collective. Type</span> <span class="term-text-yellow">help</span> <span class="term-text-dim">to list commands.</span>'); termPrint(''); createTermInput(); }
+  function createTermInput(){
+    if(!termOutput) return; var w=document.createElement('div'); w.id='term-input-line'; w.className='input-line';
+    w.innerHTML='<span class="term-prompt-user">root@rhjk</span><span class="term-prompt-path">:~$</span><input type="text" class="term-input" autocomplete="off" spellcheck="false" autofocus>';
+    termOutput.appendChild(w); var inp=w.querySelector('input'); inp.focus();
+    inp.addEventListener('keydown',async function(e){
+      if(e.key==='Enter'&&inp.value.trim()!==''&&!isProcessing){
+        var v=inp.value.trim(); cmdHistory.push(v); histIdx=cmdHistory.length;
+        w.innerHTML='<span class="term-prompt-user">root@rhjk</span><span class="term-prompt-path">:~$</span> '+esc(v); w.removeAttribute('id'); await exec(v);
+      } else if(e.key==='ArrowUp'){e.preventDefault();if(histIdx>0){histIdx--;inp.value=cmdHistory[histIdx];}}
+      else if(e.key==='ArrowDown'){e.preventDefault();if(histIdx<cmdHistory.length-1){histIdx++;inp.value=cmdHistory[histIdx];}else{histIdx=cmdHistory.length;inp.value='';}}
+    });
+    termOutput.scrollTop=termOutput.scrollHeight;
+  }
+  function esc(s){return s.replace(/[&<>"']/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];});}
+  function sleep(ms){return new Promise(function(r){setTimeout(r,ms);});}
+
+  async function exec(raw){
+    isProcessing=true; beep(660,0.03,'square');
+    var parts=raw.trim().split(/\s+/), cmd=parts[0].toLowerCase();
+    switch(cmd){
+      case 'help':
+        termPrint(''); termPrint('<span class="term-text-red">╔══════════════════════════════════════════════════╗</span>');
+        termPrint('<span class="term-text-red">║</span>  <span class="term-text-yellow">AVAILABLE COMMANDS</span>');
+        termPrint('<span class="term-text-red">╠══════════════════════════════════════════════════╣</span>');
+        termPrint('<span class="term-text-red">║</span>  <span class="term-text-white">help</span>        — Show this help message');
+        termPrint('<span class="term-text-red">║</span>  <span class="term-text-white">projects</span>    — List active deployments');
+        termPrint('<span class="term-text-red">║</span>  <span class="term-text-white">neofetch</span>    — Display system information');
+        termPrint('<span class="term-text-red">║</span>  <span class="term-text-white">about</span>       — About RHJK Ultra Systems');
+        termPrint('<span class="term-text-red">║</span>  <span class="term-text-white">matrix</span>      — Toggle matrix rain effect');
+        termPrint('<span class="term-text-red">║</span>  <span class="term-text-white">whoami</span>      — Current user identity');
+        termPrint('<span class="term-text-red">║</span>  <span class="term-text-white">date</span>        — Current system date/time');
+        termPrint('<span class="term-text-red">║</span>  <span class="term-text-white">clear</span>       — Clear terminal screen');
+        termPrint('<span class="term-text-red">║</span>  <span class="term-text-white">exit</span>        — Close terminal session');
+        termPrint('<span class="term-text-red">╚══════════════════════════════════════════════════╝</span>');
+        termPrint(''); break;
+      case 'projects': case 'ls':
+        termPrint(''); termPrint('<span class="term-text-yellow">// ACTIVE DEPLOYMENTS — '+PROJECTS.length+' systems</span>'); termPrint('');
+        PROJECTS.forEach(function(p){
+          var sc=p.status==='production'?'term-text-green':'term-text-yellow';
+          termPrint('  <span class="term-text-red">▸</span> <span class="term-text-white">'+p.name.padEnd(14)+'</span> <span class="term-text-dim">['+p.codename+']</span>  <span class="'+sc+'">● '+p.status.toUpperCase()+'</span>');
+          termPrint('      <span class="term-text-dim">'+p.description+'</span>');
+          termPrint('      <span class="term-text-dim">stack:</span> <span class="term-text-white">'+p.tags.join(' · ')+'</span>'); termPrint('');
+        }); break;
+      case 'neofetch':
+        await sleep(200); termPrint('');
+        termPrint('<pre style="color:var(--accent);font-size:11px;line-height:1.2;margin:0;text-shadow:0 0 6px rgba(255,0,51,0.4);">    ██▀███   ██░ ██  ▄▄▄██▀▀▀ ██ ▄█▀\n   ▓██ ▒ ██▒▓██░ ██▒   ▒██    ██▄█▒ \n   ▓██ ░▄█ ▒▒██▀▀██░   ░██   ▓███▄░ \n   ▒██▀▀█▄  ░▓█ ░██  ▓██▄██▓ ▓██ █▄ \n   ░██▓ ▒██▒░▓█▒░██▓  ▓███▒  ▒██▒ █▄\n   ░ ▒▓ ░▒▓░ ▒ ░░▒░▒  ▒▓▒▒░  ▒ ▒▒ ▓▒</pre>\n<span class="term-text-red">       OS:</span> RHJK OS v2.4-zen1-1-ultra\n<span class="term-text-red">     Host:</span> Zero-Day Server Cluster\n<span class="term-text-red">   Kernel:</span> 6.8.9-rhjk-ultra\n<span class="term-text-red">   Uptime:</span> 34 days, 12 hours, 4 mins\n<span class="term-text-red"> Packages:</span> 3412 (pacman)\n<span class="term-text-red">    Shell:</span> bash 5.2.26\n<span class="term-text-red">      CPU:</span> Threadripper 5995WX (128)\n<span class="term-text-red">   Memory:</span> 4812MiB / 262014MiB\n<span class="term-text-red">    Theme:</span> Crimson-Deep v1.0');
+        termPrint(''); break;
+      case 'about':
+        termPrint(''); termPrint('<span class="term-text-red">━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</span>');
+        termPrint('<span class="term-text-yellow">  RHJK // ULTRA ENTERPRISE SYSTEMS</span>');
+        termPrint('<span class="term-text-red">━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</span>'); termPrint('');
+        termPrint('  <span class="term-text-dim">Senior Full-Stack Engineer & UI/UX Architect</span>');
+        termPrint('  Especializado en sistemas de alto rendimiento.'); termPrint('');
+        termPrint('  <span class="term-text-red">▸</span> 8+ años desarrollando software empresarial');
+        termPrint('  <span class="term-text-red">▸</span> 47+ proyectos en producción global');
+        termPrint('  <span class="term-text-red">▸</span> Experto en JS/TS, Python, Go, Rust, Luau');
+        termPrint('  <span class="term-text-red">▸</span> Filosofía: Rendimiento + Estética + Seguridad');
+        termPrint(''); break;
+      case 'matrix':
+        if(STATE.matrixActive){stopMatrix();termPrint('<span class="term-text-yellow">[!]</span> Matrix rain <span class="term-text-red">DEACTIVATED</span>');}
+        else{startMatrix();termPrint('<span class="term-text-green">[+]</span> Matrix rain <span class="term-text-green">ACTIVATED</span>');}
+        termPrint(''); break;
+      case 'whoami': termPrint('<span class="term-text-red">root</span>@<span class="term-text-red">rhjk-ultra</span>'); termPrint('<span class="term-text-dim">Privilege level:</span> <span class="term-text-yellow">KERNEL</span>'); termPrint(''); break;
+      case 'date': termPrint(new Date().toString()); termPrint(''); break;
+      case 'clear': termOutput.innerHTML=''; break;
+      case 'exit': termPrint('<span class="term-text-yellow">[!]</span> Closing terminal session...'); await sleep(400); closeTerminal(); break;
+      case 'sudo': termPrint('<span class="term-text-red">[FATAL]</span> UNAUTHORIZED PRIVILEGE ESCALATION ATTEMPT'); termPrint('<span class="term-text-dim">Your IP has been logged.</span>'); termPrint(''); beep(180,0.3,'sawtooth'); break;
+      default: termPrint('bash: '+esc(cmd)+': command not found. Type <span class="term-text-yellow">help</span>.'); termPrint('');
+    }
+    isProcessing=false; createTermInput();
+  }
+
+  // MODALES
+  var backdrop=document.getElementById('modal-backdrop');
+  var configPanel=document.getElementById('config-panel');
+  var terminalModal=document.getElementById('terminal-modal');
+  function openConfig(){clickSound();if(configPanel)configPanel.classList.add('open');if(backdrop)backdrop.classList.add('open');}
+  function closeConfig(){clickSound();if(configPanel)configPanel.classList.remove('open');if(backdrop&&!terminalModal.classList.contains('open'))backdrop.classList.remove('open');}
+  function openTerminal(){clickSound();if(terminalModal)terminalModal.classList.add('open');if(backdrop)backdrop.classList.add('open');setTimeout(function(){var i=document.querySelector('#term-input-line .term-input');if(i)i.focus();},100);}
+  function closeTerminal(){clickSound();if(terminalModal)terminalModal.classList.remove('open');if(backdrop&&!configPanel.classList.contains('open'))backdrop.classList.remove('open');}
+  function closeAllModals(){closeConfig();closeTerminal();}
+  window.openConfig=openConfig; window.closeConfig=closeConfig; window.openTerminal=openTerminal; window.closeTerminal=closeTerminal; window.closeAllModals=closeAllModals; window.clickSound=clickSound; window.hoverSound=hoverSound;
+
+  // TOGGLES
+  window.toggleParticles=function(){STATE.particles=!STATE.particles;var e=document.getElementById('toggle-particles');if(e)e.classList.toggle('on',STATE.particles);clickSound();};
+  window.toggleCRT=function(){STATE.crt=!STATE.crt;var e=document.getElementById('toggle-crt');if(e)e.classList.toggle('on',STATE.crt);var o=document.querySelector('.crt-overlay');if(o)o.style.display=STATE.crt?'':'none';clickSound();};
+  window.toggleAudio=function(){STATE.audio=!STATE.audio;var e=document.getElementById('toggle-audio');if(e)e.classList.toggle('on',STATE.audio);if(STATE.audio)ensureAudio();clickSound();};
+  window.toggleGlitch=function(){STATE.glitch=!STATE.glitch;var e=document.getElementById('toggle-glitch');if(e)e.classList.toggle('on',STATE.glitch);document.body.classList.toggle('glitch-disabled',!STATE.glitch);clickSound();};
+  window.changeSystemMode=function(mode){
+    STATE.systemMode=mode; clickSound();
+    switch(mode){
+      case 'stealth': PARTICLE_COUNT=30; createParticles(); stopMatrix(); break;
+      case 'balanced': PARTICLE_COUNT=80; createParticles(); stopMatrix(); break;
+      case 'ultra': PARTICLE_COUNT=140; createParticles(); stopMatrix(); break;
+      case 'matrix': PARTICLE_COUNT=40; createParticles(); startMatrix(); break;
+    }
+  };
+
+  // TECLADO
+  document.addEventListener('keydown',function(e){ if(e.key==='Escape') closeAllModals(); if(e.ctrlKey&&e.key==='`'){e.preventDefault();openTerminal();} });
+  document.addEventListener('mouseover',function(e){ if(!STATE.audio) return; if(e.target.closest('.btn-neon, .toggle, .glass-card')) hoverSound(); });
+
+  // INICIAR
+  startBoot();
+})();
+</script>
+
+</body>
+</html>
